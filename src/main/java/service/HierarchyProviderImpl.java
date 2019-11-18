@@ -141,9 +141,16 @@ public class HierarchyProviderImpl implements IHierarchyProvider {
 		return descendentds;
 	}
 
-	/*
-	 * root / \ 1 2 / \ /\ 3 4 5 6 / \ / 8 9 7
-	 */
+	/*  
+    root
+	/  \
+   1    2
+  / \   /\
+ 3	 4 5  6
+          /  \
+/        8   9
+7
+*/
 
 	private Node updateParentOfNode(Node newParent, Node node) {
 
@@ -158,6 +165,7 @@ public class HierarchyProviderImpl implements IHierarchyProvider {
 
 		node.setParent(newParent);
 		newParent.addChild(node);
+		
 		recalculateHeight(node);
 		repo.save(node);
 		return node;
